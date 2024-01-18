@@ -180,3 +180,6 @@ repo prueba2
 El comando anterior lo que hace es, en caso de que no exista, crear una carpeta y se situa dentro de ella, luego inicializa un **repositorio de git** y lo convierte en un **repositorio privado** de nombre **prueba2** con una **rama principal master** en tu cuenta de Github.-e # $1
 
 Repository of mano
+-e # $1
+
+Repository of mano
