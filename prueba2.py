@@ -105,7 +105,7 @@ Parámetros opcionales:
                     skip = True
                 case "-s":
                     try:
-                        path = options[options.index("-s") + 1]
+                        path = options[options.index("-s") + 1] + repo_name
                         if path in VALID_OPTIONS:
                             print("No puedes usar una opción del comando como ruta de tu repo, por favor usa una válida")
                             print("Usa -s '<ruta-al-repo>'")
