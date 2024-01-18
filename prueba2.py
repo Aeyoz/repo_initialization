@@ -135,9 +135,11 @@ Parámetros opcionales:
                 print("----------------------------------------IMPORTANTE----------------------------------------")
                 print("           Ejecuta el script mediante sudo si quieres crear el repo en esta ruta")
                 print("------------------------------------------------------------------------------------------")
+                print()
                 return -1
             print("Se procederá a crear el repositorio")
             os.chdir(repo_path)
+            os.system("pwd")
         else:
             print(f"Se abortó la creación del repositorio {repo_name}")
             return -1
