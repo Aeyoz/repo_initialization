@@ -1,3 +1,10 @@
+**Creador**: Ayoze Hernández Díaz
+
+## Índice
+
++ [Como subir un repositorio local a la nube](#id0)
++ [Crear un script que automatice la creación del repo](#id1)
+
 ## Como subir un repositorio local a la nube.
 
 Para empezar hay que ejecutar los siguientes comandos para configurar ***git*** 
