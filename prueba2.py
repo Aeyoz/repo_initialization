@@ -143,6 +143,7 @@ Parámetros opcionales:
         else:
             print(f"Se abortó la creación del repositorio {repo_name}")
             return -1
+    os.system("pwd")
 
     os.system("git init .")
     os.system("touch README.md")
