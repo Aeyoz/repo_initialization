@@ -87,9 +87,22 @@ El repositorio queda de la siguiente manera:
 
 Ahora vamos a crear un script que automatice la creación de repositorios, para ello vamos a necesitar un token de autenticación de github, si no sabes o no tienes uno, puedes generarlo [aquí](https://github.com/settings/tokens?type=beta).
 
-Una vez que tenemos el token de autorización
+Para que el token mencionado sirva para el uso que le queremos dar tenemos que darle los siguientes permisos:
+
+![](./img/token2.png)
+
+Una vez que tenemos el token de autorización tenemos que guardarlo en un fichero de texto, recuerda su ruta
 
 ### Script de repo
+
+Ahora procedemos a crear el script que llamaremos ***repo.sh***, una vez creado lo que tenemos que hacer es darle permisos de ejecución con el siguiente comando
+
+
+```
+sudo chmod u+x repo.sh
+```
+
++ Contenido del script:
 
 ```
 #!/bin/bash
@@ -138,10 +151,23 @@ echo "Se han añadido los cambios locales a tu repositorio"
 echo "-----------------------------------------------------"
 ```
 
-
+> Recuerda usar la ruta de tu token.txt en el script en la línea de **gh auth login --with-token < \<ruta-a-tu-token-de-github\>.txt**
 
 #### Modo de uso:
 
 > Este script no es perfecto y no tiene todas las posibilidades del comando gh por lo que su uso se limita a 1 sola cosa con 1 solo modo de uso.
 
-Para poder usar este script en todos lados, podemos situar el script en la ruta
+
+Una vez creado el script, usaremos el siguiente comando para hacer que sea accesible desde cualquier lugar del sistema:
+
+```
+sudo mv /usr/local/bin/repo
+```
+
+Modo de uso:
+
+```
+repo prueba2
+```
+
+El comando anterior lo que hace es, en caso de que no exista, crear una carpeta y se situa dentro de ella, luego inicializa un **repositorio de git** y lo convierte en un **repositorio privado** de nombre **prueba2** con una **rama principal master** en tu cuenta de Github.
