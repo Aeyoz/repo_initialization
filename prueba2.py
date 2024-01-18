@@ -116,7 +116,7 @@ Parámetros opcionales:
                     repo_path = path
                     final_command[5] = f"-s {path}"
                     skip = True
-                    print("OK")
+                    print("La opción -s hace lo que debe")
                 case _:
                     print("Opción desconocida o inválida")
                     print(help_text)
