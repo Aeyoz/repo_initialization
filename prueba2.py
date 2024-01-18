@@ -149,7 +149,7 @@ Parámetros opcionales:
     os.system(" ".join(final_command))
     os.system("git add .")
     os.system("git commit -m 'primera prueba en python'")
-    os.system("git push -u main master")
+    os.system(f"git push -u {repo_name} main master")
 
 
 
