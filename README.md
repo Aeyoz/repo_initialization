@@ -94,7 +94,7 @@ El repositorio queda de la siguiente manera:
 
 Ahora vamos a crear un script que automatice la creación de repositorios, para ello vamos a necesitar un token de autenticación de github, si no sabes o no tienes uno, puedes generarlo [aquí](https://github.com/settings/tokens?type=beta).
 
-Para que el token mencionado sirva para el uso que le queremos dar tenemos que darle los siguientes permisos:
+Para que el token mencionado sirva para el uso que le queremos dar tenemos que seleccionar ***All repositories*** y darle los siguientes permisos:
 
 ![](./img/token2.png)
 
