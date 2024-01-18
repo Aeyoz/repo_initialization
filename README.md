@@ -3,9 +3,9 @@
 ## Índice
 
 + [Como subir un repositorio local a la nube](#id0)
-+ [Crear un script que automatice la creación del repo](#id1)
++ [Crear un script que automatice la creación del repo](id1)
 
-## Como subir un repositorio local a la nube. <a name="#id0"></a>
+## Como subir un repositorio local a la nube. <a name="id0"></a>
 
 Para empezar hay que ejecutar los siguientes comandos para configurar ***git*** 
 
@@ -90,7 +90,7 @@ El repositorio queda de la siguiente manera:
 
 ![](./img/repo7.png)
 
-## Crear un script que automatice la creación del repo <a name="#id1"></a>
+## Crear un script que automatice la creación del repo <a name="id1"></a>
 
 Ahora vamos a crear un script que automatice la creación de repositorios, para ello vamos a necesitar un token de autenticación de github, si no sabes o no tienes uno, puedes generarlo [aquí](https://github.com/settings/tokens?type=beta).
 
