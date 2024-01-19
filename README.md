@@ -234,3 +234,6 @@ Repository of mano4
 -e # $1
 
 Repository of mano3
+-e # a
+
+Repository of a
