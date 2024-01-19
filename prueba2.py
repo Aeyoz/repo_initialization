@@ -137,12 +137,16 @@ Parámetros opcionales:
             print(f"Se abortó la creación del repositorio {repo_name}")
             return -1
 
+    final_command.append("--public")
+
+
     os.system("git init .")
     os.system("touch README.md")
     os.system(f"echo -e '# $1\n\nRepository of {repo_name}' | tee -a README.md > /dev/null")
     os.system("gh auth login --with-token < /home/pc22-dpl/access.txt")
     print(" ".join(final_command))
-    #gh repo create --private -s $actual_dir/$1 -r main --add-readme
+    # gh repo create --private -s $actual_dir/$1 -r main --add-readme
+    # gh repo create mano -r main -s /home/pc22-dpl/mano
     #os.system(" ".join(final_command))
     os.system("git add .")
     os.system("git commit -m 'primera prueba en python'")
