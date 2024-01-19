@@ -138,11 +138,11 @@ Parámetros opcionales:
             return -1
 
     final_command.extend(visibility)
-#    final_command.append("--add-readme")
 
 
     os.system("pwd")
     os.system(f"git init {repo_path}")
+#    os.system("git branch -M main")
     os.system("touch README.md")
     os.system(f"echo -e '# $1\n\nRepository of {repo_name}' | tee -a README.md > /dev/null")
     os.system("gh auth login --with-token < /home/pc22-dpl/access.txt")
@@ -152,7 +152,7 @@ Parámetros opcionales:
     os.system(" ".join(final_command))
     os.system("git add .")
     os.system("git commit -m 'primera prueba en python'")
-    os.system(f"git push -u {repo_name} origin main")
+    os.system("git push -u master main")
 
 
 
