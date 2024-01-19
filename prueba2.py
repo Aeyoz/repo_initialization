@@ -138,7 +138,6 @@ Parámetros opcionales:
             return -1
 
     final_command.extend(visibility)
-    print(" ".join(final_command))
     executed_command = " ".join(final_command)
     print(executed_command)
     os.system(f"git init {repo_path}")
