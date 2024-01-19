@@ -142,11 +142,11 @@ Parámetros opcionales:
     print(executed_command)
     os.system(f"git init {repo_path}")
     os.system("touch README.md")
-    os.system(f"echo -e '# {repo_name}\n\nRepository of {repo_name}' | tee -a README.md > /dev/null")
+    os.system(f"echo -e '# $1\n\nRepository of {repo_name}' | tee -a README.md > /dev/null")
     os.system("gh auth login --with-token < /home/pc22-dpl/access.txt")
     os.system("cat README.md")
     os.system(executed_command)
-    os.system("git add .")
+    os.system("git add --all")
     os.system("git commit -m 'primera prueba en python'")
     os.system("git push -u master main")
 
