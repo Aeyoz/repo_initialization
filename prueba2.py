@@ -138,6 +138,7 @@ Parámetros opcionales:
             return -1
 
     final_command.append("--public")
+    final_command.append("--add-readme")
 
 
     os.system("git init .")
