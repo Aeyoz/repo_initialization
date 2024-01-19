@@ -145,7 +145,7 @@ Parámetros opcionales:
     os.system(f"echo -e '# $1\n\nRepository of {repo_name}' | tee -a README.md > /dev/null")
     os.system("gh auth login --with-token < /home/pc22-dpl/access.txt")
     os.system(executed_command)
-    os.system("git add .")
+    os.system("git add --all")
     os.system("git commit -m 'primera prueba en python'")
     os.system("git push -u master main")
 
