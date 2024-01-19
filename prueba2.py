@@ -1,10 +1,7 @@
 #!/usr/bin/python3
 
-import subprocess
 import sys
 import os
-
-#os.system("ls")
 
 def create_repo():
 
@@ -14,7 +11,6 @@ def create_repo():
     if len(sys.argv) < 2:
         print("NO HAS INTRODUCIDO UN NOMBRE PARA TU REPO")
         print("Usa repo -h para obtener más información de como usar este comando")
-
         return -1
 
     help_text = """
@@ -44,8 +40,6 @@ Parámetros opcionales:
     Establece la ruta que se va a usar para la creación del repositorio 
     (por defecto la ruta que se usa es: 
     tu directorio actual + el nombre indicado en repo <nombre-del-repo>)
-
-
 """
 
     repo_name_candidate = sys.argv[1]
@@ -139,17 +133,16 @@ Parámetros opcionales:
                 return -1
             print("Se procederá a crear el repositorio")
             os.chdir(repo_path)
-            os.system("pwd")
         else:
             print(f"Se abortó la creación del repositorio {repo_name}")
             return -1
-    os.system("pwd")
 
     os.system("git init .")
     os.system("touch README.md")
     os.system(f"echo -e '# $1\n\nRepository of {repo_name}' | tee -a README.md > /dev/null")
     os.system("gh auth login --with-token < /home/pc22-dpl/access.txt")
     print(" ".join(final_command))
+    #gh repo create --private -s $actual_dir/$1 -r main --add-readme
     #os.system(" ".join(final_command))
     os.system("git add .")
     os.system("git commit -m 'primera prueba en python'")
