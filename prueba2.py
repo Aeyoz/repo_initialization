@@ -138,18 +138,14 @@ Parámetros opcionales:
             return -1
 
     final_command.extend(visibility)
-
-
-    os.system("pwd")
+    print(" ".join(final_command))
+    executed_command = " ".join(final_command)
+    print(executed_command)
     os.system(f"git init {repo_path}")
-#    os.system("git branch -M main")
     os.system("touch README.md")
     os.system(f"echo -e '# $1\n\nRepository of {repo_name}' | tee -a README.md > /dev/null")
     os.system("gh auth login --with-token < /home/pc22-dpl/access.txt")
-    print(" ".join(final_command))
-    # gh repo create --private -s $actual_dir/$1 -r main --add-readme
-    # gh repo create mano -r main -s /home/pc22-dpl/mano
-    os.system(" ".join(final_command))
+    os.system(executed_command)
     os.system("git add .")
     os.system("git commit -m 'primera prueba en python'")
     os.system("git push -u master main")
@@ -157,6 +153,11 @@ Parámetros opcionales:
 
 
 create_repo()
+
+
+
 #os.system("mkdir /home/pc22-dpl/mano2")
 #os.system("git init /home/pc22-dpl/mano2")
-#os.system("gh repo create mano2 --private -s /home/pc22-dpl/mano2 --add-readme -r main --description 'descripcion de prueba'")
+#os.system("gh repo create mano2 --private -s /home/pc22-dpl/mano2 -r main --description 'descripcion de prueba'")
+
+#           gh repo create repo_name --private -s $actual_dir/$1 -r main --description 'descripcion de prueba'
