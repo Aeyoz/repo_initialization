@@ -111,7 +111,6 @@ Parámetros opcionales:
                     repo_path = path
                     final_command[5] = f"-s {path}"
                     skip = True
-                    print(f"La opción -s hace lo que debe, la ruta: {path}")
                 case _:
                     print("Opción desconocida o inválida")
                     print(help_text)
@@ -138,26 +137,19 @@ Parámetros opcionales:
             return -1
 
     final_command.extend(visibility)
+    final_command.append("--add-readme")
     executed_command = " ".join(final_command)
-    print(executed_command)
+    os.chdir(repo_path)
     os.system(f"git init {repo_path}")
     os.system("touch README.md")
-    os.system(f"echo -e '# $1\n\nRepository of {repo_name}' | tee -a README.md > /dev/null")
+    file = open("README.md", "w")
+    file.write(f"# {repo_name}\n\nRepository of {repo_name}")
+    file.close()
     os.system("gh auth login --with-token < /home/pc22-dpl/access.txt")
     os.system("cat README.md")
     os.system(executed_command)
-    os.system("git add --all")
+    os.system("git add .")
     os.system("git commit -m 'primera prueba en python'")
     os.system("git push -u main master")
 
-
-
 create_repo()
-
-
-
-#os.system("mkdir /home/pc22-dpl/mano2")
-#os.system("git init /home/pc22-dpl/mano2")
-#os.system("gh repo create mano2 --private -s /home/pc22-dpl/mano2 -r main --description 'descripcion de prueba'")
-
-#           gh repo create repo_name --private -s $actual_dir/$1 -r main --description 'descripcion de prueba'
