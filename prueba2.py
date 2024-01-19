@@ -50,6 +50,7 @@ Parámetros opcionales:
     repo_name = sys.argv[1]
     options = sys.argv[2:]
     final_command = ["gh", "repo", "create", repo_name, "-r main", "-s ."]
+    visibility = ["--public"]
 
 
     repo_path = os.getcwd() + f"/{sys.argv[1]}"
@@ -82,7 +83,7 @@ Parámetros opcionales:
                     final_command[4] = f"-r {branch_name}"
                     skip = True            
                 case "-p":
-                    final_command.append("--private")
+                    visibility = ["--private"]
                 case "-r":
                     final_command = ["gh", "repo", "delete", repo_name]
                 case "-d":
@@ -123,7 +124,6 @@ Parámetros opcionales:
         if (user_answer := input(f"¿Deseas crear la carpeta {repo_path}?\n").lower()) in VALID_ANSWERS:
             try:
                 os.makedirs(repo_path)
-                print(repo_path)
             except:
                 print()
                 print("----------------------------------------IMPORTANTE----------------------------------------")
@@ -137,10 +137,11 @@ Parámetros opcionales:
             print(f"Se abortó la creación del repositorio {repo_name}")
             return -1
 
-    final_command.append("--public")
-    final_command.append("--add-readme")
+    final_command.extend(visibility)
+#    final_command.append("--add-readme")
 
 
+    os.system("pwd")
     os.system(f"git init {repo_path}")
     os.system("touch README.md")
     os.system(f"echo -e '# $1\n\nRepository of {repo_name}' | tee -a README.md > /dev/null")
@@ -151,7 +152,7 @@ Parámetros opcionales:
     os.system(" ".join(final_command))
     os.system("git add .")
     os.system("git commit -m 'primera prueba en python'")
-    os.system(f"git push -u {repo_name} main master")
+    os.system(f"git push -u {repo_name} origin main")
 
 
 
