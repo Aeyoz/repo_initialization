@@ -148,7 +148,7 @@ Parámetros opcionales:
     os.system(executed_command)
     os.system("git add .")
     os.system("git commit -m 'primera prueba en python'")
-    os.system("git push -u origin main")
+    os.system("git push -u master main")
 
 
 
