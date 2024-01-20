@@ -4,9 +4,11 @@ import sys
 import os
 
 def create_repo():
-
+    VISIBILITY = "--public"
     VALID_ANSWERS = ["si", "yes", "s", "y"]
-    VALID_OPTIONS = ["-p", "-r", "-h", "-d"]
+    VALID_OPTIONS = ["-p", "-r", "-h", "-d", "-b", "-s", "-i"]
+    MANDATORY_PARAMS = ["--add-readme"]
+
 
     if len(sys.argv) < 2:
         print("NO HAS INTRODUCIDO UN NOMBRE PARA TU REPO")
@@ -25,6 +27,10 @@ Parámetros opcionales:
 
 -p:
     Crea el repositorio como privado, por defecto el repositorio que
+    crees será público.
+
+-i:
+    Crea el repositorio como interno, por defecto el repositorio que
     crees será público.
 
 -h:
@@ -49,16 +55,12 @@ Parámetros opcionales:
 
     repo_name = sys.argv[1]
     options = sys.argv[2:]
-    final_command = ["gh", "repo", "create", repo_name, "-r main", "-s ."]
-    visibility = ["--public"]
+    final_command = ["gh", "repo", "create", repo_name, "--remote main", "-s ."]
 
+    cd = os.getcwd()
+    repo_path = cd + (f"{sys.argv[1]}" if cd.endswith("/") else f"/{sys.argv[1]}")
 
-    repo_path = os.getcwd() + f"/{sys.argv[1]}"
-
-    default = True
-
-    if options:
-        default = False
+    default = True if options else False
 
     if not default:
         skip = False
@@ -80,10 +82,10 @@ Parámetros opcionales:
                     except:
                         print("No especificaste un nombre de rama remota para el repositorio")
                         return -1
-                    final_command[4] = f"-r {branch_name}"
+                    final_command[4] = f"--remote {branch_name}"
                     skip = True            
                 case "-p":
-                    visibility = ["--private"]
+                    VISIBILITY = "--private"
                 case "-r":
                     final_command = ["gh", "repo", "delete", repo_name]
                 case "-d":
@@ -100,7 +102,7 @@ Parámetros opcionales:
                     skip = True
                 case "-s":
                     try:
-                        path = options[options.index("-s") + 1] + repo_name
+                        path = options[options.index("-s") + 1] + (f"{repo_name}" if cd.endswith("/") else f"/{repo_name}")
                         if path in VALID_OPTIONS:
                             print("No puedes usar una opción del comando como ruta de tu repo, por favor usa una válida")
                             print("Usa -s <ruta-al-repo>")
@@ -111,14 +113,18 @@ Parámetros opcionales:
                     repo_path = path
                     final_command[5] = f"-s {path}"
                     skip = True
+                case "-i":
+                    VISIBILITY = "--internal"
                 case _:
                     print("Opción desconocida o inválida")
+                    print()
                     print(help_text)
                     return -1
 
     if not os.path.exists(repo_path):
         print("El repositorio que estas intentando crear no tiene carpeta en tu sistema")
         print("Estas son las opciones validas:")
+        print()
         print(", ".join(VALID_ANSWERS))
         if (user_answer := input(f"¿Deseas crear la carpeta {repo_path}?\n").lower()) in VALID_ANSWERS:
             try:
@@ -136,18 +142,36 @@ Parámetros opcionales:
             print(f"Se abortó la creación del repositorio {repo_name}")
             return -1
 
-    final_command.extend(visibility)
-    final_command.append("--add-readme")
+    # Constructing the final command
+
+    MANDATORY_PARAMS.append(VISIBILITY)
+    final_command.extend(MANDATORY_PARAMS)
+
     executed_command = " ".join(final_command)
+
+    # Repo creation
+
     os.chdir(repo_path)
-    os.system(f"git init {repo_path}")
-    os.system("touch README.md")
-    file = open("README.md", "w")
-    file.write(f"# {repo_name}\n\nRepository of {repo_name}")
-    file.close()
-    os.system("gh auth login --with-token < /home/pc22-dpl/access.txt")
-    os.system("cat README.md")
+    os.system(f"git init")
+
+    # Check if there is a README.md file in the repo
+
+    dir_elements = os.listdir()
+
+    if "README.md" not in dir_elements:
+        os.system("touch README.md")
+        os.system(f"echo '# {repo_name}\n\nRepository of {repo_name}' >> README.md")
+
+    # Autentication against Github
+
+    os.system("gh auth login --with-token < <tu-token-de-acceso>.txt")
+
+    # Executing the final command
+
     os.system(executed_command)
+
+    # Adding all contents to github repository and pushing them to origin or main
+
     os.system("git add .")
     os.system("git commit -m 'primera prueba en python'")
     os.system("git push -u main master")
