@@ -143,7 +143,7 @@ echo "README.md añadido"
 echo "-----------------------------------------------------"
 
 gh auth login --with-token < <ruta-a-tu-token-de-github>.txt
-gh repo create --private -s $actual_dir/$1 -r main --add-readme
+gh repo create --private -s $actual_dir/$1 -r main
 
 echo "-----------------------------------------------------"
 echo "Has sido autenticado y tu repo se ha creado"
@@ -168,7 +168,7 @@ echo "-----------------------------------------------------"
 Una vez creado el script, usaremos el siguiente comando para hacer que sea accesible desde cualquier lugar del sistema:
 
 ```
-sudo mv /usr/local/bin/repo
+sudo mv repo.sh /usr/local/bin/repo
 ```
 
 Modo de uso:
